@@ -1,0 +1,26 @@
+@import "styles/colors.scss";
+
+.navigation {
+  display: flex;
+  a {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: $color-primary;
+    text-decoration: none;
+    transition: 0.2s all;
+
+    &:not(last-child) {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      border-bottom: 2px solid $color-primary;
+    }
+
+    &.active {
+      color: $color-secondary;
+      border-bottom: 2px solid $color-secondary;
+    }
+  }
+}
