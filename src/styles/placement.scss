@@ -1,0 +1,84 @@
+$positions: center, start, end, space-around, space-between, space-evenly;
+$spaces: (
+  5: 5px,
+  10: 10px,
+  15: 15px,
+  20: 20px,
+  25: 25px,
+  30: 30px,
+  40: 40px,
+  50: 50px,
+  60: 60px,
+  70: 70px,
+  80: 80px,
+  90: 90px,
+  100: 100px,
+  auto: auto,
+);
+
+.flex {
+  display: flex;
+
+  &-column {
+    flex-direction: column;
+  }
+
+  @each $position in $positions {
+    &-justify-#{$position} {
+      justify-content: $position;
+    }
+    &-align-#{$position} {
+      align-items: $position;
+    }
+    &-#{$position} {
+      justify-content: $position;
+      align-items: $position;
+    }
+  }
+}
+
+@each $name, $space in $spaces {
+  .m-l-#{$name} {
+    margin-left: $space;
+  }
+  .m-r-#{$name} {
+    margin-right: $space;
+  }
+  .m-t-#{$name} {
+    margin-top: $space;
+  }
+  .m-b-#{$name} {
+    margin-bottom: $space;
+  }
+  .m-#{$name} {
+    margin: $space;
+  }
+  .p-l-#{$name} {
+    padding-left: $space;
+  }
+  .p-r-#{$name} {
+    padding-right: $space;
+  }
+  .p-t-#{$name} {
+    padding-top: $space;
+  }
+  .p-b-#{$name} {
+    padding-bottom: $space;
+  }
+  .p-#{$name} {
+    padding: $space;
+  }
+}
+
+@for $i from 1 to 21 {
+  .w-#{5 *$i} {
+    width: 5% * $i;
+  }
+  .w-px-#{25 * $i} {
+    width: 25px * $i;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
