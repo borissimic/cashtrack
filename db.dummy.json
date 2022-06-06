@@ -1,45 +1,52 @@
 {
   "expenses": [
     {
+      "id": 0,
+      "category": "Utility",
+      "description": "Electricity",
+      "value": 500,
+      "date": "01/01/1970"
+    },
+    {
       "id": 1,
       "category": "Utility",
-      "name": "Electricity",
-      "price": 500,
+      "description": "Water",
+      "value": 150,
       "date": "01/01/1970"
     },
     {
       "id": 2,
-      "category": "Utility",
-      "name": "Water",
-      "price": 150,
-      "date": "01/01/1970"
-    },
-    {
-      "id": 1,
       "category": "Food",
-      "name": "Apples , Milk , Oil",
-      "price": 200,
+      "description": "Apples , Milk , Oil",
+      "value": 200,
       "date": "01/01/1970"
     },
     {
-      "id": 1,
+      "id": 3,
       "category": "Food",
-      "name": "Meat and fish",
-      "price": 260,
+      "description": "Meat and fish",
+      "value": 260,
       "date": "01/01/1970"
     },
     {
-      "id": 1,
+      "id": 4,
       "category": "Utility",
-      "name": "Gas",
-      "price": 400,
+      "description": "Gas",
+      "value": 400,
       "date": "01/01/1970"
     },
     {
-      "id": 1,
+      "id": 5,
       "category": "Other",
-      "name": "Fuel",
-      "price": 800,
+      "description": "Fuel",
+      "value": 800,
+      "date": "01/01/1970"
+    },
+    {
+      "id": 6,
+      "category": "svasta ",
+      "description": "duvan",
+      "value": 800,
       "date": "01/01/1970"
     }
   ]

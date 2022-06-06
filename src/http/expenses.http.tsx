@@ -8,16 +8,11 @@ class ExpensesHttp extends HttpClient {
     super(BASE_API_URL);
   }
 
-  // public async getExpenses(query = ""): Promise<Expense[]> {
-  //   const { data } = await axios.get(this.url("/expenses"));
+  public async getExpenses(): Promise<Expense> {
+    const { data } = await axios.get(this.url("/expenses"));
 
-  //   const expenses: Expense[] = data.map(
-  //     (expense: TExpense) => new Expense(expense)
-  //   );
-  //   return expenses.filter(({ category }) =>
-  //     formatSearchQuery(fullName).includes(formatSearchQuery(query))
-  //   );
-  // }
+    return data.map((expense: TExpense) => new Expense(expense));
+  }
   public async getExpense(id: number): Promise<Expense> {
     const { data } = await axios.get(this.url(`/expenses/${id}`));
 
@@ -28,18 +23,18 @@ class ExpensesHttp extends HttpClient {
 
     return new Expense(data);
   }
-  // public async replaceContact({ id, ...contact }: TContact): Promise<Contact> {
-  //   const { data } = await axios.put(this.url(`/contacts/${id}`), contact);
+  public async replaceExpense({ id, ...expense }: TExpense): Promise<Expense> {
+    const { data } = await axios.put(this.url(`/expenses/${id}`), expense);
 
-  //   return new Contact(data);
-  // }
+    return new Expense(data);
+  }
 
-  public async updateContact(id: number, body: any): Promise<Expense> {
+  public async updateExpense(id: number, body: any): Promise<Expense> {
     const { data } = await axios.patch(this.url(`/expenses/${id}`), body);
 
     return new Expense(data);
   }
-  public async deleteContact(id: number): Promise<Object> {
+  public async deleteExpense(id: number): Promise<Object> {
     const { data } = await axios.delete(this.url(`/expenses/${id}`));
 
     return data;

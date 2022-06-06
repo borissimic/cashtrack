@@ -1,23 +1,23 @@
 export type TExpense = {
   id: number;
+  description: string;
   category: string;
-  name: string;
-  price: number;
+  value: number;
   date: any;
 };
 
 export class Expense {
   id: number;
+  description: string;
   category: string;
-  name: string;
-  price: number;
+  value: number;
   date: any;
 
   constructor(expense: TExpense) {
     this.id = expense.id;
+    this.description = expense.description;
     this.category = expense.category;
-    this.name = expense.name;
-    this.price = expense.price;
+    this.value = expense.value;
     this.date = expense.date;
   }
 }
