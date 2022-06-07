@@ -3,8 +3,12 @@ import ExpenseCard from "./ExpenseCard";
 import "./index.scss";
 
 const ExpenseList = ({ expenses, className }: Props) => {
-  const content = expenses.map((item: TExpense, index) => {
-    return <ExpenseCard key={index} expense={new Expense(item)}></ExpenseCard>;
+  const content = expenses.map((item: TExpense) => {
+    return (
+      <li key={item.id}>
+        <ExpenseCard expense={new Expense(item)}></ExpenseCard>
+      </li>
+    );
   });
 
   return <ul className={`expense-list ${className}`}>{content}</ul>;

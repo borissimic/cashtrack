@@ -8,13 +8,6 @@
       "date": "01/01/1970"
     },
     {
-      "id": 1,
-      "category": "Utility",
-      "description": "Water",
-      "value": 150,
-      "date": "01/01/1970"
-    },
-    {
       "id": 2,
       "category": "Food",
       "description": "Apples , Milk , Oil",
@@ -39,13 +32,6 @@
       "id": 5,
       "category": "Other",
       "description": "Fuel",
-      "value": 800,
-      "date": "01/01/1970"
-    },
-    {
-      "id": 6,
-      "category": "svasta ",
-      "description": "duvan",
       "value": 800,
       "date": "01/01/1970"
     }

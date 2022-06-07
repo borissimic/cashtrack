@@ -6,20 +6,45 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ExpensesContext } from "context/expenses.context";
+import ExpensesHttp from "http/expenses.http";
 import { Expense } from "models/expense.model";
+import { useContext, useState } from "react";
 import "./index.scss";
 
-const ExpenseCard = ({ expense }: Props) => {
-  const { description, category, value, date } = expense;
+const ExpenseCard = ({ expense: _expense }: Props) => {
+  const { expenses, setExpenses } = useContext(ExpensesContext);
+  const [expense, setExpense] = useState(_expense);
+  const { id, description, category, value, date } = expense;
+  const expensesHttp = new ExpensesHttp();
+
+  const deleteHandler = async () => {
+    const newExpenses = expenses.filter(
+      (expense: Expense) => expense.id !== id
+    );
+
+    await expensesHttp.deleteExpense(id);
+
+    setExpenses(newExpenses);
+  };
+
   return (
-    <li className="expense-card">
+    <article className="expense-card">
       <div className="expense-card__icons">
-        <div className="expense-card__icons-left">
-          <FontAwesomeIcon icon={faTrash} size="lg" color="gray" />
-        </div>
-        <div className="expense-card__icons-right">
-          <FontAwesomeIcon icon={faPencil} size="lg" color="gray" />
-        </div>
+        <FontAwesomeIcon
+          className="expense-card__icons-left"
+          icon={faTrash}
+          size="lg"
+          color="gray"
+          onClick={deleteHandler}
+        />
+
+        <FontAwesomeIcon
+          className="expense-card__icons-right"
+          icon={faPencil}
+          size="lg"
+          color="gray"
+        />
       </div>
 
       <div className="expense-card__info">
@@ -37,7 +62,7 @@ const ExpenseCard = ({ expense }: Props) => {
           <span>{date}</span>
         </div>
       </div>
-    </li>
+    </article>
   );
 };
 
