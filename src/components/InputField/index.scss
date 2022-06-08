@@ -1,12 +1,29 @@
 @import "styles/colors.scss";
 
 .input-field {
-  border-bottom: 2px solid $color-primary;
-  color: $color-primary;
-  transition: 0.2s transform;
+  &__label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 
-  input {
-    border: none;
-    outline: none;
+  &__input {
+    display: flex;
+    border-bottom: 2px solid $color-primary;
+    color: $color-primary;
+    transition: 0.2s transform;
+
+    input {
+      border: none;
+      outline: none;
+      background-color: inherit;
+    }
+  }
+  &.disabled &__input {
+    border-bottom: none;
+  }
+  &__error {
+    visibility: hidden;
+    height: 26px;
   }
 }

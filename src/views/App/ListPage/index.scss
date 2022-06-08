@@ -1,0 +1,9 @@
+.list-page {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &__list {
+    width: 70%;
+  }
+}

@@ -2,35 +2,42 @@
   "expenses": [
     {
       "id": 0,
-      "category": "Utility",
+      "type": "Utility",
       "description": "Electricity",
       "value": 500,
       "date": "01/01/1970"
     },
     {
+      "id": 1,
+      "type": "Utility",
+      "description": "Water",
+      "value": 150,
+      "date": "01/01/1970"
+    },
+    {
       "id": 2,
-      "category": "Food",
+      "type": "Food",
       "description": "Apples , Milk , Oil",
       "value": 200,
       "date": "01/01/1970"
     },
     {
       "id": 3,
-      "category": "Food",
+      "type": "Food",
       "description": "Meat and fish",
       "value": 260,
       "date": "01/01/1970"
     },
     {
       "id": 4,
-      "category": "Utility",
+      "type": "Utility",
       "description": "Gas",
       "value": 400,
       "date": "01/01/1970"
     },
     {
       "id": 5,
-      "category": "Other",
+      "type": "Other",
       "description": "Fuel",
       "value": 800,
       "date": "01/01/1970"

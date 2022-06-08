@@ -4,6 +4,7 @@ import { ExpensesProvider } from "context/expenses.context";
 import { Route, Routes } from "react-router-dom";
 import CalculationPage from "views/App/CalculationPage";
 import ListPage from "views/App/ListPage";
+import EditPage from "./EditPage";
 
 function App() {
   const navItems = [
@@ -14,11 +15,16 @@ function App() {
   return (
     <ExpensesProvider>
       <Header />
-      <main className="flex flex-column flex-align-center m-t-20 ">
-        <Navigation className="" items={navItems} />
+      <Navigation
+        className="flex flex-align-center flex-justify-center  m-t-20"
+        items={navItems}
+      />
+      <main className="flex flex-column flex-align-center m-t-20">
         <Routes>
           <Route path="/Listpage" element={<ListPage />} />
           <Route path="/CalculationPage" element={<CalculationPage />} />
+          <Route path="/create" element={<EditPage />} />
+          <Route path="/edit/:id" element={<EditPage />} />
         </Routes>
       </main>
     </ExpensesProvider>

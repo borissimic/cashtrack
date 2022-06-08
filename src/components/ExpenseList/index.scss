@@ -1,6 +1,5 @@
 .expense-list {
   display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, 240px);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }

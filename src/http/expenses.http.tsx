@@ -11,7 +11,7 @@ class ExpensesHttp extends HttpClient {
   public async getExpenses(): Promise<Expense[]> {
     const { data } = await axios.get(this.url("/expenses"));
 
-    return data.map((expenses: TExpense) => new Expense(expenses));
+    return data.map((expense: TExpense) => new Expense(expense));
   }
   public async getExpense(id: number): Promise<Expense> {
     const { data } = await axios.get(this.url(`/expenses/${id}`));
