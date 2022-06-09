@@ -12,6 +12,7 @@
     border-bottom: 2px solid $color-primary;
     color: $color-primary;
     transition: 0.2s transform;
+    margin-bottom: 5px;
 
     input {
       border: none;
@@ -19,11 +20,21 @@
       background-color: inherit;
     }
   }
+
   &.disabled &__input {
     border-bottom: none;
   }
   &__error {
+    display: block;
+    color: $color-danger;
     visibility: hidden;
     height: 26px;
+    white-space: nowrap;
+  }
+}
+
+.submitted {
+  .input-field__error {
+    visibility: unset;
   }
 }

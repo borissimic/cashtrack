@@ -2,8 +2,6 @@ import { Expense, TExpense } from "models/expense.model";
 import ExpenseCard from "./ExpenseCard";
 import "./index.scss";
 import "./ExpenseCard/index.scss";
-import InputField from "components/InputField";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const ExpenseList = ({ expenses, className, hasAdd }: Props) => {
   const content = expenses.map((item: TExpense) => {
@@ -14,22 +12,7 @@ const ExpenseList = ({ expenses, className, hasAdd }: Props) => {
     );
   });
 
-  // const addCard = (
-  //   <li>
-  //     <article className="expense-card ">
-  //       <InputField icon={faEnvelope}>
-  //         <input type="text" />
-  //       </InputField>
-  //     </article>
-  //   </li>
-  // );
-
-  return (
-    <ul className={`expense-list ${className}`}>
-      {/* {hasAdd && addCard} */}
-      {content}
-    </ul>
-  );
+  return <ul className={`expense-list ${className}`}>{content}</ul>;
 };
 
 type Props = {

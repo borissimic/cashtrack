@@ -67,7 +67,7 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
       </div>
 
       <div className="expense-card__info">
-        <h3>{type}</h3>
+        <>{type}</>
         <div>
           <FontAwesomeIcon icon={faMoneyBillTrendUp} size="lg" color="gray" />
           <span>{description}</span>

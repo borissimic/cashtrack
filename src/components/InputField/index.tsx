@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { COLOR_DANGER, COLOR_PRIMARY } from "constants/colors.constants";
 import { cloneElement } from "react";
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
+
 import { createClass } from "utils/generic.util";
 import "./index.scss";
 
@@ -13,11 +15,12 @@ const InputField = ({
   formControl = [],
 }: Props) => {
   const defaultProps = { disabled: isDisabled };
-  const { register } = useForm();
+  const methods = useFormContext();
   const [id, validators] = formControl;
   const props = formControl.length
-    ? { ...defaultProps, ...register(id, validators) }
+    ? { ...defaultProps, ...methods?.register(id, validators) }
     : defaultProps;
+  const errorMessage = methods?.formState.errors[id]?.message;
 
   const content = cloneElement(children, props);
 
@@ -37,10 +40,14 @@ const InputField = ({
         {label}
       </label>
       <div className="input-field__input">
-        <FontAwesomeIcon className="m-r-5" icon={icon} />
+        <FontAwesomeIcon
+          className="m-r-5"
+          icon={icon}
+          color={errorMessage ? COLOR_DANGER : COLOR_PRIMARY}
+        />
         {createContent()}
       </div>
-      <span className="input-field__error">Error message</span>
+      <span className="input-field__error">{errorMessage}</span>
     </div>
   );
 };

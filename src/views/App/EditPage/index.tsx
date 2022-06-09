@@ -1,23 +1,27 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import InputField from "components/InputField";
 import { validators } from "utils/generic.util";
-import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
 import { parseUrlParamas } from "utils/generic.util";
+import Form from "components/Form";
+import ExpensesHttp from "http/expenses.http";
 
 const EditPage = () => {
-  const params = useParams();
+  const { id } = useParams();
   const { search } = useLocation();
   const { isReadonly } = parseUrlParamas(search);
-  const { register, handleSubmit, formState } = useForm();
+  const expensesHttp = new ExpensesHttp();
 
-  const submitHandler = (data: any) => {
-    console.log("Submitted", { data, formState });
+  const submitHandler = async (data: any) => {
+    if (id) {
+      await expensesHttp.replaceExpense({ id, ...data });
+    } else {
+      await expensesHttp.createExpense(data);
+    }
   };
-  setInterval(() => console.log(formState.errors), 3000);
 
   return (
-    <form onSubmit={handleSubmit(submitHandler)}>
+    <Form onSubmit={submitHandler}>
       <InputField
         className="w-px-150"
         label="Expense type"
@@ -35,7 +39,7 @@ const EditPage = () => {
         <input type="text" placeholder="first name" />
       </InputField>
       <button>Submit</button>
-    </form>
+    </Form>
   );
 };
 

@@ -22,7 +22,7 @@ export function parseUrlParamas(query: any): any {
   return result;
 }
 
-export function createClass(obj: any, rest?: string): string {
+export function createClass(obj: any, rest = ""): string {
   const classes = Object.keys(obj)
     .filter((key) => obj[key])
     .map((key) => key)
@@ -39,8 +39,6 @@ export function validators(obj: any): any {
     };
     return { ...acc, [key]: validator };
   }, {});
-
-  console.log(result);
 
   return result;
 }

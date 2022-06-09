@@ -1,15 +1,19 @@
+export type TExpenseType = {
+  type: "FOOD" | "UTILITES" | "TRANSPORT" | "CLOTHINHG" | "OTHER";
+};
+
 export type TExpense = {
   id: number;
   description: string;
-  type: "FOOD" | "UTILITIES" | "TRANSPORT" | "CLOTHING" | "OTHER";
   value: number;
   date: any;
+  type: TExpenseType;
 };
 
 export class Expense {
   id: number;
   description: string;
-  type: "FOOD" | "UTILITIES" | "TRANSPORT" | "CLOTHING" | "OTHER";
+  type: TExpenseType;
   value: number;
   date: any;
 
