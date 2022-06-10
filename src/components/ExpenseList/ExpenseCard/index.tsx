@@ -17,7 +17,7 @@ import "./index.scss";
 const ExpenseCard = ({ expense: _expense }: Props) => {
   const navigate = useNavigate();
   const { expenses, setExpenses } = useContext(ExpensesContext);
-  const [expense, setExpense] = useState(_expense);
+  const [expense] = useState(_expense);
   const { id, description, type, value, date } = expense;
   const expensesHttp = new ExpensesHttp();
 

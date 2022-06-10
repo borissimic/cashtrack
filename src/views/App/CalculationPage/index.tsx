@@ -1,9 +1,7 @@
-import InputField from "components/InputField";
-import { useState } from "react";
+import ExpenseForm from "components/ExpenseForm";
 
 const CalculationPage = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  return <div></div>;
+  return <ExpenseForm />;
 };
 
 export default CalculationPage;

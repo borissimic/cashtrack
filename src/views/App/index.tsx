@@ -1,7 +1,7 @@
 import Header from "components/Header";
 import Navigation from "components/Navigation";
 import { ExpensesProvider } from "context/expenses.context";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import CalculationPage from "views/App/CalculationPage";
 import ListPage from "views/App/ListPage";
 import EditPage from "./EditPage";

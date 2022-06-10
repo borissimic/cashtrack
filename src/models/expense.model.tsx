@@ -6,16 +6,16 @@ export type TExpense = {
   id: number;
   description: string;
   value: number;
-  date: any;
+  date: string;
   type: TExpenseType;
 };
 
 export class Expense {
   id: number;
   description: string;
-  type: TExpenseType;
   value: number;
-  date: any;
+  date: string;
+  type: TExpenseType;
 
   constructor(expense: TExpense) {
     this.id = expense.id;
