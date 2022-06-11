@@ -46,12 +46,11 @@ const EditPage = () => {
   }, [fetchExpense, id]);
 
   return (
-    <Form onSubmit={submitHandler} preFill={expense}>
+    <Form onSubmit={submitHandler} preFill={expense} isDisabled={isReadonly}>
       <InputField
         className="w-px-150"
         label="Expense type"
         icon={faUser}
-        isDisabled={!!isReadonly}
         formControl={[
           "type",
           validators({
@@ -73,7 +72,6 @@ const EditPage = () => {
         className="w-px-150"
         label="Expense description"
         icon={faUser}
-        isDisabled={!!isReadonly}
         formControl={[
           "description",
           validators({
@@ -88,7 +86,6 @@ const EditPage = () => {
         className="w-px-150"
         label="Expense value"
         icon={faUser}
-        isDisabled={!!isReadonly}
         formControl={[
           "value",
           validators({
@@ -103,7 +100,6 @@ const EditPage = () => {
         className="w-px-150"
         label="Expense date"
         icon={faUser}
-        isDisabled={!!isReadonly}
         formControl={[
           "date",
           validators({

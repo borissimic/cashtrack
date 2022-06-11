@@ -10,15 +10,15 @@
     {
       "description": "Novitest",
       "value": "12345",
-      "date": "2022-06-10",
+      "date": "2022-06-18",
       "type": "CLOTHING",
       "id": 2
     },
     {
-      "description": "dada",
-      "value": "25052",
-      "date": "2022-05-31",
-      "type": "TRANSPORT",
+      "description": "Gace",
+      "value": "9299,9912",
+      "date": "2022-08-31",
+      "type": "CLOTHING",
       "id": 3
     },
     {
@@ -34,6 +34,20 @@
       "value": "dada",
       "date": "2022-06-01",
       "id": 5
+    },
+    {
+      "type": "TRANSPORT",
+      "description": "dadada",
+      "value": "12345",
+      "date": "2022-07-08",
+      "id": 6
+    },
+    {
+      "description": "Voda",
+      "value": "1992,92",
+      "date": "2022-07-09",
+      "type": "UTILITES",
+      "id": 7
     }
   ]
 }
