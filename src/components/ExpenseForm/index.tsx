@@ -46,9 +46,7 @@ const ExpenseForm = ({ className }: Props) => {
         ]}
       >
         <select className="expense-form__select">
-          <option defaultValue={""} value="" hidden>
-            Select Expense Type
-          </option>
+          <option hidden>Select Expense Type</option>
           {Object.keys(ExpenseType).map((key) => (
             <option key={key} value={key}>
               {ExpenseType[key as keyof typeof ExpenseType]}

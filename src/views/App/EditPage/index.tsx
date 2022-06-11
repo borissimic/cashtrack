@@ -16,6 +16,13 @@ const EditPage = () => {
   const navigate = useNavigate();
   const [expense, setExpense] = useState(null);
   const expensesHttp = useMemo(() => new ExpensesHttp(), []);
+  enum ExpenseType {
+    FOOD = "Hrana",
+    UTILITES = "Režije",
+    TRANSPORT = "Prijevoz",
+    CLOTHING = "Odjeca",
+    OTHER = "Ostalo",
+  }
 
   const submitHandler = async (data: TExpense) => {
     if (id) {
@@ -53,7 +60,14 @@ const EditPage = () => {
           }),
         ]}
       >
-        <input type="text" placeholder="first name" />
+        <select className="expense-form__select">
+          <option hidden>Select Expense Type</option>
+          {Object.keys(ExpenseType).map((key) => (
+            <option key={key} value={key}>
+              {ExpenseType[key as keyof typeof ExpenseType]}
+            </option>
+          ))}
+        </select>
       </InputField>
       <InputField
         className="w-px-150"

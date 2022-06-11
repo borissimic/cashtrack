@@ -11,8 +11,29 @@
       "description": "Novitest",
       "value": "12345",
       "date": "2022-06-10",
-      "type": "UTILITES",
+      "type": "CLOTHING",
       "id": 2
+    },
+    {
+      "description": "dada",
+      "value": "25052",
+      "date": "2022-05-31",
+      "type": "TRANSPORT",
+      "id": 3
+    },
+    {
+      "description": "d213",
+      "value": "1233443",
+      "date": "2022-06-08",
+      "type": "OTHER",
+      "id": 4
+    },
+    {
+      "type": "UTILITES",
+      "description": "dada",
+      "value": "dada",
+      "date": "2022-06-01",
+      "id": 5
     }
   ]
 }
