@@ -6,6 +6,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ConfirmationModal from "components/Modals/ConfirmationModal";
 import { ExpensesContext } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
 import { Expense } from "models/expense.model";
@@ -20,10 +21,15 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
   const [expense] = useState(_expense);
   const { id, description, type, value, date } = expense;
   const expensesHttp = new ExpensesHttp();
+  const [isModalActive, setIsModalActive] = useState(false);
 
-  const deleteHandler = async (event: MouseEvent) => {
+  const openModal = (event: MouseEvent) => {
     event.stopPropagation();
 
+    setIsModalActive(true);
+  };
+
+  const deleteHandler = async () => {
     const newExpenses = expenses.filter(
       (expense: Expense) => expense.id !== id
     );
@@ -44,44 +50,56 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
   };
 
   return (
-    <article
-      className="expense-card"
-      onClick={(event) => navigateHandler(event, true)}
-    >
-      <div className="expense-card__icons">
-        <FontAwesomeIcon
-          className="expense-card__icons-left"
-          icon={faTrash}
-          size="lg"
-          color="gray"
-          onClick={deleteHandler}
-        />
+    <>
+      {isModalActive && (
+        <ConfirmationModal
+          onConfirm={deleteHandler}
+          stateHandler={setIsModalActive}
+        >
+          <h2>Delete {description} ?</h2>
 
-        <FontAwesomeIcon
-          className="expense-card__icons-right"
-          icon={faPencil}
-          size="lg"
-          color="gray"
-          onClick={(event) => navigateHandler(event, false)}
-        />
-      </div>
+          <p>Are you sure you want to delete {description}? </p>
+        </ConfirmationModal>
+      )}
+      <article
+        className="expense-card"
+        onClick={(event) => navigateHandler(event, true)}
+      >
+        <div className="expense-card__icons">
+          <FontAwesomeIcon
+            className="expense-card__icons-left"
+            icon={faTrash}
+            size="lg"
+            color="gray"
+            onClick={openModal}
+          />
 
-      <div className="expense-card__info">
-        <>{type}</>
-        <div>
-          <FontAwesomeIcon icon={faMoneyBillTrendUp} size="lg" color="gray" />
-          <span>{description}</span>
+          <FontAwesomeIcon
+            className="expense-card__icons-right"
+            icon={faPencil}
+            size="lg"
+            color="gray"
+            onClick={(event) => navigateHandler(event, false)}
+          />
         </div>
-        <div>
-          <FontAwesomeIcon icon={faDollarSign} size="lg" color="gray" />
-          <span>{value}</span>
+
+        <div className="expense-card__info">
+          <>{type}</>
+          <div>
+            <FontAwesomeIcon icon={faMoneyBillTrendUp} size="lg" color="gray" />
+            <span>{description}</span>
+          </div>
+          <div>
+            <FontAwesomeIcon icon={faDollarSign} size="lg" color="gray" />
+            <span>{value}</span>
+          </div>
+          <div>
+            <FontAwesomeIcon icon={faCalendar} size="lg" color="gray" />
+            <span>{date}</span>
+          </div>
         </div>
-        <div>
-          <FontAwesomeIcon icon={faCalendar} size="lg" color="gray" />
-          <span>{date}</span>
-        </div>
-      </div>
-    </article>
+      </article>
+    </>
   );
 };
 

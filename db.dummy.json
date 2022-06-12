@@ -15,13 +15,6 @@
       "id": 2
     },
     {
-      "description": "Gace",
-      "value": "9299,9912",
-      "date": "2022-08-31",
-      "type": "CLOTHING",
-      "id": 3
-    },
-    {
       "description": "d213",
       "value": "1233443",
       "date": "2022-06-08",
@@ -34,20 +27,6 @@
       "value": "dada",
       "date": "2022-06-01",
       "id": 5
-    },
-    {
-      "type": "TRANSPORT",
-      "description": "dadada",
-      "value": "12345",
-      "date": "2022-07-08",
-      "id": 6
-    },
-    {
-      "description": "Voda",
-      "value": "1992,92",
-      "date": "2022-07-09",
-      "type": "UTILITES",
-      "id": 7
     }
   ]
 }

@@ -1,7 +1,7 @@
 import Navigation from "components/Navigation";
 import { ExpensesProvider } from "context/expenses.context";
 import { Routes, Route, Navigate } from "react-router-dom";
-import CalculationPage from "../CalculationPage";
+import CalculationPage from "./CalculationPage";
 import ListPage from "./ListPage";
 
 const ExpenseDashboard = () => {

@@ -1,0 +1,41 @@
+@import "styles/colors.scss";
+
+.modal-contanier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $backdrop;
+}
+
+.modal {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-width: 400px;
+  min-height: 200px;
+  border-radius: 5px;
+  background-color: $color-white;
+
+  &__cancel {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  &__buttons {
+    display: flex;
+    margin-top: auto;
+
+    & > :first-child {
+      margin-right: 15px;
+    }
+  }
+}

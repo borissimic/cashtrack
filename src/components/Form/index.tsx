@@ -10,7 +10,6 @@ const Form = ({
   preFill,
   isDisabled,
 }: Props) => {
-  console.log(preFill);
   const methods = useForm();
 
   const classes = createClass(

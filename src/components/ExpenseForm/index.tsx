@@ -1,4 +1,5 @@
 import { faCalendar, faDollar } from "@fortawesome/free-solid-svg-icons";
+import Button from "components/Button";
 import Form from "components/Form";
 import InputField from "components/InputField";
 import { ExpensesContext } from "context/expenses.context";
@@ -8,6 +9,14 @@ import { validators } from "utils/generic.util";
 
 import "./index.scss";
 
+enum ExpenseType {
+  FOOD = "Hrana",
+  UTILITES = "Režije",
+  TRANSPORT = "Prijevoz",
+  CLOTHING = "Odjeca",
+  OTHER = "Ostalo",
+}
+
 const ExpenseForm = ({ className }: Props) => {
   const { setExpenses } = useContext(ExpensesContext);
   const expensesHttp = useMemo(() => new ExpensesHttp(), []);
@@ -16,14 +25,6 @@ const ExpenseForm = ({ className }: Props) => {
 
     setExpenses(expenses);
   }, [expensesHttp, setExpenses]);
-
-  enum ExpenseType {
-    FOOD = "Hrana",
-    UTILITES = "Režije",
-    TRANSPORT = "Prijevoz",
-    CLOTHING = "Odjeca",
-    OTHER = "Ostalo",
-  }
 
   const submitHandler = async (data: any) => {
     await expensesHttp.createExpense(data);
@@ -91,7 +92,7 @@ const ExpenseForm = ({ className }: Props) => {
         <input type="date" defaultValue={""} />
       </InputField>
 
-      <button>Submit</button>
+      <Button className="m-b-20">Submit</Button>
     </Form>
   );
 };
