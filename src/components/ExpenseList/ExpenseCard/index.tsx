@@ -6,10 +6,12 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ExpenseForm from "components/ExpenseForm";
 import ConfirmationModal from "components/Modals/ConfirmationModal";
+import GenericModal from "components/Modals/GenericModal";
 import { ExpensesContext } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
-import { Expense } from "models/expense.model";
+import { Expense, TExpense } from "models/expense.model";
 import { MouseEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { buildUrlParams } from "utils/generic.util";
@@ -21,12 +23,14 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
   const [expense] = useState(_expense);
   const { id, description, type, value, date } = expense;
   const expensesHttp = new ExpensesHttp();
-  const [isModalActive, setIsModalActive] = useState(false);
-
-  const openModal = (event: MouseEvent) => {
+  const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
+  const [isGenericModalActive, setIsGenericModalActive] = useState(false);
+  const [isEditEnabled, setIsEditEnabled] = useState(true);
+  const [isEditMode, setIsEditMode] = useState(isEditEnabled);
+  const openDeleteModal = (event: MouseEvent) => {
     event.stopPropagation();
 
-    setIsModalActive(true);
+    setIsDeleteModalActive(true);
   };
 
   const deleteHandler = async () => {
@@ -39,31 +43,47 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
     setExpenses(newExpenses);
   };
 
-  const navigateHandler = (event: MouseEvent, isReadonly: boolean) => {
-    event.stopPropagation();
-    if (isReadonly) {
-      const query = buildUrlParams({ isReadonly });
+  // const editHandler = async (data: Expense) => {
+  //   const newExpenses = await expensesHttp.replaceExpense({ id, ...data });
+  //   setExpenses([newExpenses]);
+  // };
 
-      return navigate(`/edit/${id}?${query}`);
+  const openGenericeModal = (event: MouseEvent, isReadonly: boolean) => {
+    event.stopPropagation();
+    if (!isReadonly) {
+      setIsEditEnabled(false);
+      setIsGenericModalActive(true);
     }
-    navigate(`/edit/${id}`);
+    {
+      setIsGenericModalActive(true);
+    }
   };
 
   return (
     <>
-      {isModalActive && (
+      {isDeleteModalActive && (
         <ConfirmationModal
           onConfirm={deleteHandler}
-          stateHandler={setIsModalActive}
+          stateHandler={setIsDeleteModalActive}
         >
           <h2>Delete {description} ?</h2>
 
           <p>Are you sure you want to delete {description}? </p>
         </ConfirmationModal>
       )}
+      {isGenericModalActive && (
+        <GenericModal stateHandler={setIsGenericModalActive}>
+          <ExpenseForm
+            id={id}
+            preFill={expense}
+            isFormDisabled={isEditEnabled}
+            editMode={isEditMode}
+          ></ExpenseForm>
+        </GenericModal>
+      )}
       <article
         className="expense-card"
-        onClick={(event) => navigateHandler(event, true)}
+        onClick={(event) => openGenericeModal(event, true)}
       >
         <div className="expense-card__icons">
           <FontAwesomeIcon
@@ -71,7 +91,7 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
             icon={faTrash}
             size="lg"
             color="gray"
-            onClick={openModal}
+            onClick={openDeleteModal}
           />
 
           <FontAwesomeIcon
@@ -79,7 +99,7 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
             icon={faPencil}
             size="lg"
             color="gray"
-            onClick={(event) => navigateHandler(event, false)}
+            onClick={(event) => openGenericeModal(event, false)}
           />
         </div>
 

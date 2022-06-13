@@ -8,17 +8,17 @@
       "id": 1
     },
     {
-      "description": "Novitest",
-      "value": "12345",
-      "date": "2022-06-18",
+      "description": "finalnitest",
+      "value": "987654",
+      "date": "2022-07-08",
       "type": "CLOTHING",
       "id": 2
     },
     {
-      "description": "d213",
+      "description": "dada",
       "value": "1233443",
       "date": "2022-06-08",
-      "type": "OTHER",
+      "type": "TRANSPORT",
       "id": 4
     },
     {
@@ -27,6 +27,34 @@
       "value": "dada",
       "date": "2022-06-01",
       "id": 5
+    },
+    {
+      "type": "CLOTHING",
+      "description": "test3",
+      "value": "1234",
+      "date": "2022-06-01",
+      "id": 6
+    },
+    {
+      "type": "UTILITES",
+      "description": "231",
+      "value": "1231",
+      "date": "2022-06-08",
+      "id": 8
+    },
+    {
+      "type": "TRANSPORT",
+      "description": "test1234",
+      "value": "1233",
+      "date": "2022-06-01",
+      "id": 9
+    },
+    {
+      "type": "UTILITES",
+      "description": "dada",
+      "value": "dada",
+      "date": "2022-06-01",
+      "id": 10
     }
   ]
 }

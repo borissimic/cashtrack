@@ -3,8 +3,10 @@ import Button from "components/Button";
 import Form from "components/Form";
 import InputField from "components/InputField";
 import { ExpensesContext } from "context/expenses.context";
+import { METHODS } from "http";
 import ExpensesHttp from "http/expenses.http";
-import { useCallback, useContext, useEffect, useMemo } from "react";
+import { TExpense } from "models/expense.model";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { validators } from "utils/generic.util";
 
 import "./index.scss";
@@ -17,25 +19,34 @@ enum ExpenseType {
   OTHER = "Ostalo",
 }
 
-const ExpenseForm = ({ className }: Props) => {
-  const { setExpenses } = useContext(ExpensesContext);
+const ExpenseForm = ({
+  id,
+  className,
+  preFill,
+  isFormDisabled,
+  editMode,
+}: Props) => {
+  const { expenses, setExpenses } = useContext(ExpensesContext);
+  // const [expense, setExpense] = useState(null);
   const expensesHttp = useMemo(() => new ExpensesHttp(), []);
-  const fetchExpenses = useCallback(async () => {
-    const expenses = await expensesHttp.getExpenses();
 
-    setExpenses(expenses);
-  }, [expensesHttp, setExpenses]);
-
-  const submitHandler = async (data: any) => {
-    await expensesHttp.createExpense(data);
-    setExpenses(await expensesHttp.getExpenses());
+  const submitHandler = async (data: TExpense) => {
+    if (id) {
+      await expensesHttp.replaceExpense({ id, ...data });
+      setExpenses(await expensesHttp.getExpenses());
+    } else {
+      await expensesHttp.createExpense(data);
+      setExpenses(await expensesHttp.getExpenses());
+    }
   };
 
-  useEffect(() => {
-    fetchExpenses();
-  }, [fetchExpenses]);
   return (
-    <Form onSubmit={submitHandler} className="expense-form">
+    <Form
+      onSubmit={submitHandler}
+      className="expense-form"
+      preFill={preFill}
+      isDisabled={isFormDisabled}
+    >
       <h3 className="expense-form__title">Add new Expense</h3>
       <InputField
         label="Expense type"
@@ -92,13 +103,17 @@ const ExpenseForm = ({ className }: Props) => {
         <input type="date" defaultValue={""} />
       </InputField>
 
-      <Button className="m-b-20">Submit</Button>
+      {!isFormDisabled && <Button className="m-b-20">Submit</Button>}
     </Form>
   );
 };
 
 type Props = {
   className?: string;
+  id?: number;
+  preFill?: any;
+  isFormDisabled?: boolean;
+  editMode?: boolean;
 };
 
 export default ExpenseForm;
