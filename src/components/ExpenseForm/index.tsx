@@ -2,11 +2,12 @@ import { faCalendar, faDollar } from "@fortawesome/free-solid-svg-icons";
 import Button from "components/Button";
 import Form from "components/Form";
 import InputField from "components/InputField";
+import { ExpenseContext } from "context/expense.contex";
 import { ExpensesContext } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
 import { TExpense } from "models/expense.model";
-import { useContext, useMemo, useState } from "react";
-import { useNavigate } from "react-router";
+import { useContext, useMemo } from "react";
+
 import { validators } from "utils/generic.util";
 
 import "./index.scss";
@@ -30,10 +31,9 @@ const ExpenseForm = ({
   isSubmitDone,
   closeEditModal,
 }: Props) => {
-  const { expenses, setExpenses } = useContext(ExpensesContext);
+  const { setExpenses } = useContext(ExpensesContext);
   const expensesHttp = useMemo(() => new ExpensesHttp(), []);
-  const [expense, setExpense] = useState(null);
-  const navigate = useNavigate();
+  const { setExpense } = useContext(ExpenseContext);
 
   const submitHandler = async (data: TExpense) => {
     if (id) {
@@ -41,7 +41,6 @@ const ExpenseForm = ({
       setExpense(await expensesHttp.getExpense(id));
       setExpenses(await expensesHttp.getExpenses());
       closeEditModal(false);
-      navigate("/expenses");
     } else {
       await expensesHttp.createExpense(data);
       setExpenses(await expensesHttp.getExpenses());

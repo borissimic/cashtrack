@@ -12,14 +12,7 @@ import GenericModal from "components/Modals/GenericModal";
 import { ExpensesContext } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
 import { Expense } from "models/expense.model";
-import {
-  MouseEvent,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { MouseEvent, useContext, useMemo, useState } from "react";
 
 import "./index.scss";
 
@@ -71,7 +64,7 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
           onConfirm={deleteHandler}
           stateHandler={setIsDeleteModalActive}
         >
-          <h2>Delete {description} ?</h2>
+          <>Delete {type} ?</>
 
           <p>Are you sure you want to delete {description}? </p>
         </ConfirmationModal>
