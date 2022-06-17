@@ -8,15 +8,15 @@
       "id": 1
     },
     {
-      "description": "finalnitest1",
+      "description": "finalnitest2",
       "value": "987654",
       "date": "2022-07-08",
       "type": "CLOTHING",
       "id": 2
     },
     {
-      "description": "terst",
-      "value": "1233443",
+      "description": "test",
+      "value": "234",
       "date": "2022-06-08",
       "type": "CLOTHING",
       "id": 4
@@ -34,41 +34,6 @@
       "date": "2022-06-15",
       "type": "CLOTHING",
       "id": 6
-    },
-    {
-      "description": "zwze365",
-      "value": "123243",
-      "date": "2022-06-08",
-      "type": "CLOTHING",
-      "id": 7
-    },
-    {
-      "type": "TRANSPORT",
-      "description": "as",
-      "value": "321",
-      "date": "2022-06-16",
-      "id": 8
-    },
-    {
-      "description": "sada",
-      "value": "321",
-      "date": "2022-06-16",
-      "type": "TRANSPORT",
-      "id": 9
-    },
-    {
-      "description": "356",
-      "value": "12345",
-      "date": "2022-04-07",
-      "type": "CLOTHING",
-      "id": 10
-    },
-    {
-      "type": "CLOTHING",
-      "description": "56",
-      "value": "656",
-      "date": "2022-06-02",
-      "id": 11
     }
   ]
 }

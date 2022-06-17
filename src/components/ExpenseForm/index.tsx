@@ -6,6 +6,7 @@ import { ExpensesContext } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
 import { TExpense } from "models/expense.model";
 import { useContext, useMemo, useState } from "react";
+import { useNavigate } from "react-router";
 import { validators } from "utils/generic.util";
 
 import "./index.scss";
@@ -32,6 +33,7 @@ const ExpenseForm = ({
   const { expenses, setExpenses } = useContext(ExpensesContext);
   const expensesHttp = useMemo(() => new ExpensesHttp(), []);
   const [expense, setExpense] = useState(null);
+  const navigate = useNavigate();
 
   const submitHandler = async (data: TExpense) => {
     if (id) {
@@ -39,6 +41,7 @@ const ExpenseForm = ({
       setExpense(await expensesHttp.getExpense(id));
       setExpenses(await expensesHttp.getExpenses());
       closeEditModal(false);
+      navigate("/expenses");
     } else {
       await expensesHttp.createExpense(data);
       setExpenses(await expensesHttp.getExpenses());
