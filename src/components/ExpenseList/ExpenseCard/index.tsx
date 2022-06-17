@@ -6,27 +6,35 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ExpenseForm from "components/ExpenseForm";
+
 import ConfirmationModal from "components/Modals/ConfirmationModal";
 import GenericModal from "components/Modals/GenericModal";
 import { ExpensesContext } from "context/expenses.context";
 import ExpensesHttp from "http/expenses.http";
-import { Expense, TExpense } from "models/expense.model";
-import { MouseEvent, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { buildUrlParams } from "utils/generic.util";
+import { Expense } from "models/expense.model";
+import {
+  MouseEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
 import "./index.scss";
 
 const ExpenseCard = ({ expense: _expense }: Props) => {
-  const navigate = useNavigate();
   const { expenses, setExpenses } = useContext(ExpensesContext);
   const [expense] = useState(_expense);
   const { id, description, type, value, date } = expense;
-  const expensesHttp = new ExpensesHttp();
+
+  const expensesHttp = useMemo(() => new ExpensesHttp(), []);
   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
   const [isGenericModalActive, setIsGenericModalActive] = useState(false);
   const [isEditEnabled, setIsEditEnabled] = useState(true);
-  const [isEditMode, setIsEditMode] = useState(isEditEnabled);
+  const [isEditMode] = useState(isEditEnabled);
+  const [isAddForm, setIsAddForm] = useState(true);
+
   const openDeleteModal = (event: MouseEvent) => {
     event.stopPropagation();
 
@@ -43,19 +51,16 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
     setExpenses(newExpenses);
   };
 
-  // const editHandler = async (data: Expense) => {
-  //   const newExpenses = await expensesHttp.replaceExpense({ id, ...data });
-  //   setExpenses([newExpenses]);
-  // };
-
   const openGenericeModal = (event: MouseEvent, isReadonly: boolean) => {
     event.stopPropagation();
     if (!isReadonly) {
+      setIsAddForm(false);
       setIsEditEnabled(false);
       setIsGenericModalActive(true);
-    }
-    {
+    } else {
+      setIsAddForm(true);
       setIsGenericModalActive(true);
+      setIsEditEnabled(true);
     }
   };
 
@@ -72,14 +77,14 @@ const ExpenseCard = ({ expense: _expense }: Props) => {
         </ConfirmationModal>
       )}
       {isGenericModalActive && (
-        <GenericModal stateHandler={setIsGenericModalActive}>
-          <ExpenseForm
-            id={id}
-            preFill={expense}
-            isFormDisabled={isEditEnabled}
-            editMode={isEditMode}
-          ></ExpenseForm>
-        </GenericModal>
+        <GenericModal
+          stateHandler={setIsGenericModalActive}
+          id={id}
+          preFill={expense}
+          isFormDisabled={isEditEnabled}
+          editMode={isEditMode}
+          isAddForm={isAddForm}
+        ></GenericModal>
       )}
       <article
         className="expense-card"

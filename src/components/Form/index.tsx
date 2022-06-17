@@ -9,6 +9,7 @@ const Form = ({
   className,
   preFill,
   isDisabled,
+  isAddForm,
 }: Props) => {
   const methods = useForm();
 
@@ -34,6 +35,7 @@ type Props = {
   className?: string;
   preFill?: any;
   isDisabled?: boolean;
+  isAddForm?: boolean;
 };
 
 export default Form;

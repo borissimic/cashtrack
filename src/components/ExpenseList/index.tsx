@@ -16,7 +16,7 @@ const ExpenseList = ({ expenses, className, hasAdd }: Props) => {
 };
 
 type Props = {
-  expenses: TExpense[];
+  expenses?: TExpense[];
   className?: string;
   hasAdd?: boolean;
 };

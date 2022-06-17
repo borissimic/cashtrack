@@ -3,10 +3,9 @@ import Button from "components/Button";
 import Form from "components/Form";
 import InputField from "components/InputField";
 import { ExpensesContext } from "context/expenses.context";
-import { METHODS } from "http";
 import ExpensesHttp from "http/expenses.http";
 import { TExpense } from "models/expense.model";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { validators } from "utils/generic.util";
 
 import "./index.scss";
@@ -21,19 +20,25 @@ enum ExpenseType {
 
 const ExpenseForm = ({
   id,
+
   className,
   preFill,
   isFormDisabled,
   editMode,
+  isAddForm,
+  isSubmitDone,
+  closeEditModal,
 }: Props) => {
   const { expenses, setExpenses } = useContext(ExpensesContext);
-  // const [expense, setExpense] = useState(null);
   const expensesHttp = useMemo(() => new ExpensesHttp(), []);
+  const [expense, setExpense] = useState(null);
 
   const submitHandler = async (data: TExpense) => {
     if (id) {
       await expensesHttp.replaceExpense({ id, ...data });
+      setExpense(await expensesHttp.getExpense(id));
       setExpenses(await expensesHttp.getExpenses());
+      closeEditModal(false);
     } else {
       await expensesHttp.createExpense(data);
       setExpenses(await expensesHttp.getExpenses());
@@ -46,6 +51,7 @@ const ExpenseForm = ({
       className="expense-form"
       preFill={preFill}
       isDisabled={isFormDisabled}
+      isAddForm={isAddForm}
     >
       <h3 className="expense-form__title">Add new Expense</h3>
       <InputField
@@ -103,7 +109,7 @@ const ExpenseForm = ({
         <input type="date" defaultValue={""} />
       </InputField>
 
-      {!isFormDisabled && <Button className="m-b-20">Submit</Button>}
+      {!isAddForm && <Button className="m-b-20">Submit</Button>}
     </Form>
   );
 };
@@ -114,6 +120,9 @@ type Props = {
   preFill?: any;
   isFormDisabled?: boolean;
   editMode?: boolean;
+  isAddForm?: boolean;
+  isSubmitDone?: any;
+  closeEditModal?: any;
 };
 
 export default ExpenseForm;
