@@ -1,39 +1,11 @@
 {
   "expenses": [
     {
-      "description": "test2",
-      "value": "123",
-      "date": "2022-12-12",
-      "type": "UTILITES",
+      "type": "FOOD",
+      "description": "banana test",
+      "value": "1",
+      "date": "2022-06-23",
       "id": 1
-    },
-    {
-      "description": "finalnitest2",
-      "value": "987654",
-      "date": "2022-07-08",
-      "type": "CLOTHING",
-      "id": 2
-    },
-    {
-      "description": "boris",
-      "value": "dada",
-      "date": "2022-06-01",
-      "type": "UTILITES",
-      "id": 5
-    },
-    {
-      "description": "testnovi",
-      "value": "9299,99",
-      "date": "2022-06-15",
-      "type": "CLOTHING",
-      "id": 6
-    },
-    {
-      "description": "Split",
-      "value": "131231231",
-      "date": "2022-06-25",
-      "type": "TRANSPORT",
-      "id": 7
     }
   ]
 }

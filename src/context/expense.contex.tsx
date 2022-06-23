@@ -7,7 +7,7 @@ const ExpenseContext = createContext({
 });
 
 const ExpenseProvider = ({ children }: Props) => {
-  const [expense, setExpense] = useState(null);
+  const [expense, setExpense] = useState({});
 
   return (
     <ExpenseContext.Provider value={{ expense, setExpense }}>

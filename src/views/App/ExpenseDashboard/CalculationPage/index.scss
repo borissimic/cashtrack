@@ -1,0 +1,12 @@
+.totals {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  gap: 30px;
+  &__types {
+    flex: 0.6;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 40px;
+  }
+}
