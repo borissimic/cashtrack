@@ -4,6 +4,7 @@ import { TExpense } from "models/expense.model";
 import { ExpenseType } from "constants/generic.enum";
 import { useCallback, useContext, useEffect, useMemo } from "react";
 import "./index.scss";
+import Table from "components/Table";
 
 const CalculationPage = () => {
   const { expenses, setExpenses } = useContext(ExpensesContext);
@@ -41,13 +42,19 @@ const CalculationPage = () => {
   }, [fetchExpenses, expenses.length]);
 
   return (
-    <article className="totals">
-      <section className="totals__total">
-        <h2>Total Amount</h2>
-        <p>{totalAmount} kn</p>
-      </section>
-      <section className="totals__types">{totalAmountByType}</section>
-    </article>
+    <>
+      <article className="totals">
+        <section className="totals__total">
+          <h2>Total Amount</h2>
+          <p>{totalAmount} kn</p>
+        </section>
+        <section className="totals__types">{totalAmountByType}</section>
+      </article>
+
+      <div className="table-contanier">
+        <Table expenses={expenses}></Table>
+      </div>
+    </>
   );
 };
 

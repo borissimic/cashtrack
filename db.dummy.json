@@ -6,6 +6,34 @@
       "value": "1",
       "date": "2022-06-23",
       "id": 1
+    },
+    {
+      "type": "UTILITES",
+      "description": "Struja test",
+      "value": "2",
+      "date": "2022-06-16",
+      "id": 2
+    },
+    {
+      "description": "autobs",
+      "value": "30000",
+      "date": "2022-06-16",
+      "type": "TRANSPORT",
+      "id": 3
+    },
+    {
+      "type": "CLOTHING",
+      "description": "Majica",
+      "value": "4",
+      "date": "2022-06-23",
+      "id": 4
+    },
+    {
+      "description": "svasta nesto",
+      "value": "5",
+      "date": "2022-06-24",
+      "type": "OTHER",
+      "id": 5
     }
   ]
 }
