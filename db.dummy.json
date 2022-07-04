@@ -34,6 +34,20 @@
       "date": "2022-06-24",
       "type": "OTHER",
       "id": 5
+    },
+    {
+      "type": "CLOTHING",
+      "description": "hgjhz",
+      "value": "123",
+      "date": "2022-07-04",
+      "id": 6
+    },
+    {
+      "type": "TRANSPORT",
+      "description": "gfjh",
+      "value": "66666666",
+      "date": "2022-07-20",
+      "id": 7
     }
   ]
 }

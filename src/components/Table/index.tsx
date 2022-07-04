@@ -7,13 +7,18 @@ const Table = ({ expenses }: Props) => {
     return <th key={i}>{item}</th>;
   });
 
-  const expenseTypes = Object.keys(ExpenseType).map((type, i) => {
-    return (
-      <tr key={i}>
-        <td>{type}</td>
-      </tr>
-    );
-  });
+  const monthlyExpense = (month: number, expenseType: any) => {
+    const listMonth = expenses
+      .filter(
+        (expense: TExpense) =>
+          new Date(expense.date).getMonth() === month &&
+          expense.type === expenseType
+      )
+
+      .reduce((acc: number, cur: { value: Number }) => acc + +cur.value, 0);
+
+    return listMonth;
+  };
 
   return (
     <table className="table">
@@ -23,7 +28,16 @@ const Table = ({ expenses }: Props) => {
           {tableHeading}
         </tr>
       </thead>
-      <tbody className="table__body">{expenseTypes}</tbody>
+      <tbody className="table__body">
+        {Object.keys(ExpenseType).map((type, i) => (
+          <tr key={i}>
+            <td>{type}</td>
+            {Object.keys(MonthList).map((key, i) => (
+              <td key={i}>{monthlyExpense(+key, type)} Kn </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };
